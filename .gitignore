@@ -1,0 +1,33 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/node_modules_bak
+*/node_modules
+client/node_modules
+server/node_modules
+mqtt/node_modules
+# 不提交自动生成的theme.less文件
+/public/theme.less
+# testing
+/coverage
+# *.rar
+# production
+/ifaas-web-jingwu
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.iml
+.vs
+.idea
+.vscode
+package-lock.json
+node_modulesbak
