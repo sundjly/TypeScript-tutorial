@@ -1,0 +1,1 @@
+有关学习参考了  https://segmentfault.com/a/1190000011935122   搭建了typescript的运行环境
