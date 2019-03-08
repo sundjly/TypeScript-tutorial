@@ -27,7 +27,5 @@ yarn-error.log*
 
 .iml
 .vs
-.idea
-.vscode
 package-lock.json
 node_modulesbak
