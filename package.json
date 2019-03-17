@@ -1,7 +1,7 @@
 {
   "name": "tsdemo",
   "version": "1.0.0",
-  "description": "",
+  "description": "ts-demo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^11.11.3",
     "ts-node": "7.0.0",
     "typescript": "2.9.2"
   }

@@ -16,3 +16,17 @@ TypeScript 增加了代码的可读性和可维护性，包容性也非常好，
 ## 首先安装并调试
 有关学习参考了  https://segmentfault.com/a/1190000011935122   搭建了typescript的运行环境，直接配合vs code 的dubug就可以查看相关的结果，非常的方便。具体可以查看[这里](docs/安装.md)
 
+>点开 VSCode 的内置终端就可以运行命令行很方便。不过有的时候会遇到奇怪的问题，遇到问题你就改用 Git Bash 即可。
+
+
+## 使用最新的js一些语法
+配置es2015(或者更高级的)，添加`tsconfig.json`
+```
+{
+  "compilerOptions": {
+        "lib": [
+            "es2015"
+        ]
+    }
+}
+```
