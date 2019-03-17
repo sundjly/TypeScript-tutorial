@@ -4,16 +4,12 @@
 /node_modules
 /node_modules_bak
 */node_modules
-client/node_modules
-server/node_modules
-mqtt/node_modules
-# 不提交自动生成的theme.less文件
-/public/theme.less
+
 # testing
-/coverage
-# *.rar
+
+
 # production
-/ifaas-web-jingwu
+
 # misc
 .DS_Store
 .env.local
