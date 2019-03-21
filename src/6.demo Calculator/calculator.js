@@ -1,5 +1,9 @@
 var Calculator = /** @class */ (function () {
     function Calculator() {
+        this.n1 = null;
+        this.n2 = null;
+        this.operator = null;
+        this.result = null;
         this.calculatorKeys = [
             ['Clear', '÷'],
             ['7', '8', '9', '×'],
@@ -45,69 +49,75 @@ var Calculator = /** @class */ (function () {
                 var button = event.target;
                 var text = button.textContent;
                 // 操作数字
-                if ('0123456789'.indexOf(text) >= 0) {
-                    console.log('数字');
-                    // 更新n2
-                    if (_this.operator) {
-                        if (_this.n2) {
-                            _this.n2 = parseInt(_this.n2.toString() + text);
-                        }
-                        else {
-                            _this.n2 = parseInt(text);
-                        }
-                        _this.span.textContent = _this.n2.toString();
-                    }
-                    else {
-                        // 更新n1
-                        if (_this.n1) {
-                            _this.n1 = parseInt(_this.n1.toString() + text);
-                        }
-                        else {
-                            _this.n1 = parseInt(text);
-                        }
-                        _this.span.textContent = _this.n1.toString();
-                    }
-                }
-                else if ('×÷+-'.indexOf(text) >= 0) {
-                    // update 操作符
-                    _this.operator = text;
-                }
-                else if ('='.indexOf(text) >= 0) {
-                    var result = void 0;
-                    switch (_this.operator) {
-                        case '+':
-                            result = _this.n1 + _this.n2;
-                            _this.span.textContent = result.toString();
-                            break;
-                        case '-':
-                            result = _this.n1 - _this.n2;
-                            _this.span.textContent = result.toString();
-                            break;
-                        case '×':
-                            result = _this.n1 * _this.n2;
-                            _this.span.textContent = result.toString();
-                            break;
-                        case '÷':
-                            if (_this.n2) {
-                                result = _this.n1 / _this.n2;
-                                // 四舍五入
-                                return _this.span.textContent = result.toFixed(2);
-                            }
-                            else {
-                                _this.reset();
-                            }
-                            break;
-                        default: break;
-                    }
-                }
-                else if ('Clear'.indexOf(text) >= 0) {
-                    _this.reset();
-                }
-            }
-            else {
-                console.log('不是按钮的东西');
+                _this.updateNumbersOrOperator(text);
             }
         });
+    };
+    Calculator.prototype.updateNumber = function (name, text) {
+        if (this[name]) {
+            this[name] += text;
+        }
+        else {
+            this[name] = text;
+        }
+        this.span.textContent = this[name];
+    };
+    Calculator.prototype.updateNumbers = function (text) {
+        console.log('数字');
+        if (this.operator) {
+            // 更新n2
+            this.updateNumber('n2', text);
+        }
+        else {
+            // 更新n1
+            this.updateNumber('n1', text);
+        }
+    };
+    Calculator.prototype.updateResult = function () {
+        var result;
+        var n1 = parseFloat(this.n1);
+        var n2 = parseFloat(this.n2);
+        switch (this.operator) {
+            case '+':
+                result = n1 + n2;
+                break;
+            case '-':
+                result = n1 - n2;
+                break;
+            case '×':
+                result = n1 * n2;
+                break;
+            case '÷':
+                result = n1 / n2;
+                break;
+            default: break;
+        }
+        // 存在问题
+        // result = result.toFixed(6);
+        result = result.toPrecision(6);
+        this.span.textContent = result;
+        this.n1 = null;
+        this.n2 = null;
+        this.operator = null;
+        this.result = result;
+    };
+    Calculator.prototype.updateNumbersOrOperator = function (text) {
+        if ('0123456789.'.indexOf(text) >= 0) {
+            this.updateNumbers(text);
+        }
+        else if ('×÷+-'.indexOf(text) >= 0) {
+            // update 操作符
+            if (this.n1 === null) {
+                this.n1 = this.result;
+            }
+            this.operator = text;
+        }
+        else if ('='.indexOf(text) >= 0) {
+            this.updateResult();
+        }
+        else if ('Clear'.indexOf(text) >= 0) {
+            this.reset();
+        }
     };
     Calculator.prototype.renderButtons = function () {
         var _this = this;
@@ -120,12 +130,13 @@ var Calculator = /** @class */ (function () {
             _this.container.appendChild(div);
         });
     };
-    Calculator.prototype.reset = function () {
+    Calculator.prototype.reset = function (shouldClear) {
+        if (shouldClear === void 0) { shouldClear = true; }
         // 重置
         this.n1 = null;
         this.n2 = null;
         this.operator = null;
-        this.span.textContent = '0';
+        shouldClear && (this.span.textContent = '0');
     };
     return Calculator;
 }());
