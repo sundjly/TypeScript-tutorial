@@ -16,4 +16,12 @@
 .calculator .calculator-output{
     border: 1px solid gray;
     height: 3em;
+    position: relative;
+}
+
+.calculator-output span{
+    position: absolute;
+    right: .2em;
+    bottom: .2em;
+    overflow: hidden;
 }
