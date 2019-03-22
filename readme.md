@@ -32,4 +32,13 @@ TypeScript 增加了代码的可读性和可维护性，包容性也非常好，
 ```
 
 ## demo
+
 在src中按照数字大小依次排列了demo，可以跟随demo一起了解
+- [1.TypeScript in 5 minutes.ts](src/1.TypeScript in 5 minutes.ts)
+- [2.Basic Types.ts](src/2.Basic Types.ts)
+- [3.sort.ts](src/3.sort.ts)
+- [4.marry.ts](src/4.marry.ts)
+- [5.demo.ts](src/5.demo.ts)
+- [6.一个计算器](src/6.demo Calculator/calculator.ts)  可以`克隆仓库，然后cd src/6.demo Calculator`
+    然后运行 `http-server . -c-1`
+
