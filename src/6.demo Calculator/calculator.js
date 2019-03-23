@@ -16,7 +16,7 @@ var Calculator = /** @class */ (function () {
         this.renderButtons();
         this.bindEvents();
     }
-    Calculator.createButton = function (text, container, className) {
+    Calculator.prototype.createButton = function (text, container, className) {
         var button = document.createElement('button');
         button.textContent = text;
         if (className) {
@@ -92,9 +92,9 @@ var Calculator = /** @class */ (function () {
                 break;
             default: break;
         }
-        // 存在问题toFixed,会导致出现0.000000
+        // 存在问题
         // result = result.toFixed(6);
-        result = result.toPrecision(6).replace(/.0+$/, '');
+        result = result.toPrecision(6);
         this.span.textContent = result;
         this.n1 = null;
         this.n2 = null;
@@ -125,7 +125,7 @@ var Calculator = /** @class */ (function () {
             var div = document.createElement('div');
             div.classList.add('row');
             textList.forEach(function (text) {
-                Calculator.createButton(text, div, "calculator-button text-" + text);
+                _this.createButton(text, div, "calculator-button text-" + text);
             });
             _this.container.appendChild(div);
         });

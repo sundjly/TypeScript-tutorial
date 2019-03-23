@@ -21,7 +21,7 @@ class Calculator {
         this.bindEvents();
     }
 
-    static createButton(text: string, container: HTMLDivElement, className: string): HTMLButtonElement {
+    createButton(text: string, container: HTMLDivElement, className: string): HTMLButtonElement {
         let button: HTMLButtonElement = document.createElement('button');
         button.textContent = text;
         if (className) {
@@ -31,7 +31,7 @@ class Calculator {
         return button;
     }
 
-    createContainer():void {
+    createContainer() {
         let container: HTMLDivElement = document.createElement('div');
         container.classList.add('calculator');
         document.body.appendChild(container);
@@ -49,7 +49,7 @@ class Calculator {
         this.span = span;
     }
 
-    bindEvents():void {
+    bindEvents() {
         this.container.addEventListener('click', (event) => {
             // console.log(event.target.textContent)  会报错  需要判断
             if (event.target instanceof HTMLButtonElement) {
@@ -97,9 +97,9 @@ class Calculator {
                 break;
             default: break;
         }
-        // 存在问题toFixed,会导致出现0.000000
+        // 存在问题
         // result = result.toFixed(6);
-        result = result.toPrecision(6).replace(/.0+$/,'');
+        result = result.toPrecision(6);
         this.span.textContent = result;
         this.n1 = null;
         this.n2 = null;
@@ -128,7 +128,7 @@ class Calculator {
             let div = document.createElement('div');
             div.classList.add('row');
             textList.forEach((text: string) => {
-                Calculator.createButton(text, div, `calculator-button text-${text}`);
+                this.createButton(text, div, `calculator-button text-${text}`);
             });
             this.container.appendChild(div);
         });
