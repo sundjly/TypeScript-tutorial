@@ -94,7 +94,10 @@ var Calculator = /** @class */ (function () {
         }
         // 存在问题
         // result = result.toFixed(6);
-        result = result.toPrecision(6);
+        result = result.toPrecision(6).replace(/0+$/g, '').replace(/0+e/g, 'e');
+        if (n2 === 0) {
+            result = '不是数字';
+        }
         this.span.textContent = result;
         this.n1 = null;
         this.n2 = null;

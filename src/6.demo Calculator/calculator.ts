@@ -63,7 +63,7 @@ class Calculator {
 
     updateNumber(name: string, text: string): void {
         if (this[name]) {
-            this[name] +=  text;
+            this[name] += text;
         } else {
             this[name] = text;
         }
@@ -83,8 +83,8 @@ class Calculator {
 
     updateResult(): void {
         let result: any;
-        let n1:number = parseFloat(this.n1)
-        let n2:number = parseFloat(this.n2)
+        let n1: number = parseFloat(this.n1)
+        let n2: number = parseFloat(this.n2)
         switch (this.operator) {
             case '+': result = n1 + n2;
                 break;
@@ -99,7 +99,10 @@ class Calculator {
         }
         // 存在问题
         // result = result.toFixed(6);
-        result = result.toPrecision(6);
+        result = result.toPrecision(6).replace(/0+$/g, '').replace(/0+e/g, 'e');
+        if (n2 === 0) {
+            result = '不是数字'
+        }
         this.span.textContent = result;
         this.n1 = null;
         this.n2 = null;
