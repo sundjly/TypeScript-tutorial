@@ -31,14 +31,14 @@ class Calculator {
         return button;
     }
 
-    createContainer() {
+    createContainer(): void {
         let container: HTMLDivElement = document.createElement('div');
         container.classList.add('calculator');
         document.body.appendChild(container);
         this.container = container;
     }
 
-    createOutput() {
+    createOutput(): void {
         let output: HTMLDivElement = document.createElement('div');
         output.className = 'calculator-output';
         let span: HTMLSpanElement = document.createElement('span');
@@ -49,7 +49,7 @@ class Calculator {
         this.span = span;
     }
 
-    bindEvents() {
+    bindEvents(): void {
         this.container.addEventListener('click', (event) => {
             // console.log(event.target.textContent)  会报错  需要判断
             if (event.target instanceof HTMLButtonElement) {
