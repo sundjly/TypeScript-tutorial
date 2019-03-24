@@ -5,10 +5,12 @@ interface Shape {
 /* 
 
 一般是声明类有哪些属性，方法
+1. 只读属性
+2. 可选属性
 */
 interface Human {
     readonly name: string;
-    age: number;
+    age?: number;
     shape: Shape;
     likedGame?: Array<string>;
     say(word: string): void;
@@ -16,7 +18,6 @@ interface Human {
 
 let frank: Human = {
     name: 'sundjly',
-    age: 1,
     shape: { head: 'head', body: '1' },
     say(word: string) {
         console.log(`${this.name}:${word}`)
@@ -42,7 +43,7 @@ const MyType = ((): MyInterface => {
 }
 );
 
-const returnMyType:MyInterface = MyType();
+const returnMyType: MyInterface = MyType();
 // 需要一定的理解
 const MyType2: MyInterface = ((): MyInterface => {
     const x: any = function (): string { // Notice the any  any类型TypeScript就不会检查x的类型
@@ -53,3 +54,40 @@ const MyType2: MyInterface = ((): MyInterface => {
     }
     return x;
 })();
+
+
+/* 继承 */
+
+interface Animal {
+    move(): void;
+}
+
+interface Love {
+    love(): void;
+}
+interface Human1 extends Animal, Love {
+    name: string;
+    age: string;
+}
+
+const sundj: Human1 = {
+    name: 'sundj',
+    age: '12',
+    move() {
+        console.log('sdf');
+    },
+    love() {
+        console.log('love ')
+    }
+}
+
+
+interface Shape {
+    color: string;
+}
+
+interface Square extends Shape {
+    sideLength: number;
+}
+
+let square = <Square>{};
